@@ -1,121 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A timeline of Intel's sustainability milestones in water, energy, and emissions.">
     <title>Intel Sustainability Timeline</title>
+
+    <!-- Bootstrap CSS (id is used by script.js to swap to the RTL build) -->
+    <!-- NOTE: no integrity/SRI hash here on purpose, so the href can be swapped at runtime -->
+    <link id="bootstrap-css" rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Custom styles (load AFTER Bootstrap so they win) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Skip link for keyboard users (Lighthouse a11y) -->
+    <a class="visually-hidden-focusable skip-link" href="#main" data-i18n="skipLink">Skip to main content</a>
 
-    <header>
-        <h1>Intel Sustainability Timeline</h1>
+    <header class="site-header">
+        <nav class="container d-flex flex-wrap justify-content-between align-items-center py-2"
+             aria-label="Primary">
+            <span class="brand fw-bold" data-i18n="siteTitle">Intel Sustainability Timeline</span>
+            <div class="d-flex align-items-center">
+                <label for="langSelect" class="form-label mb-0 me-2" data-i18n="langLabel">Language</label>
+                <select id="langSelect" class="form-select form-select-sm w-auto">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </nav>
 
-        <img src="Intel-Sustainability-Timeline.png.png"
-             alt="Intel Sustainability Initiatives"
-             width="100%">
+        <div class="container text-center">
+            <h1 class="page-title my-3" data-i18n="siteTitle">Intel Sustainability Timeline</h1>
+            <img src="Intel-Sustainability-Timeline.png.png"
+                 alt="Illustration of Intel's sustainability goals across water, renewable energy, and carbon emissions"
+                 class="img-fluid rounded hero-img" width="700" height="250">
+        </div>
     </header>
 
-   <main class="timeline">
+    <main id="main" class="container my-4">
+        <h2 class="section-title text-center mb-4" data-i18n="journeyHeading">Our Sustainability Journey</h2>
 
-    <article class="milestone">
-        <h2>2000-2007</h2>
+        <!-- Bootstrap responsive grid: 1 / 2 / 3 columns -->
+        <div class="row g-4">
 
-        <img src="water-conservation.jpg" alt="Water Conservation">
+            <!-- WATER -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card milestone h-100">
+                    <img src="water-conservation.jpg" class="card-img-top milestone-img"
+                         alt="Industrial water-recycling tanks at an Intel facility" width="400" height="160">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge era-badge mb-2">2000–2007</span>
+                        <h3 class="card-title h5">
+                            <i class="bi bi-droplet-half me-2" aria-hidden="true"></i>
+                            <span data-i18n="water_title">Water Conservation</span>
+                        </h3>
+                        <p class="card-text fw-bold" data-i18n="water_summary">Advanced water recycling systems.</p>
+                        <button type="button" class="btn btn-intel mt-auto learn-more"
+                                data-bs-toggle="modal" data-bs-target="#detailModal" data-milestone="water"
+                                data-i18n="learnMore">Learn More</button>
+                    </div>
+                </article>
+            </div>
 
-        <h3>Water Conservation</h3>
+            <!-- RENEWABLE -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card milestone h-100">
+                    <img src="renewable-energy.jpg" class="card-img-top milestone-img"
+                         alt="Wind turbines and solar panels supplying clean electricity" width="400" height="160">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge era-badge mb-2">2008–2015</span>
+                        <h3 class="card-title h5">
+                            <i class="bi bi-lightning-charge-fill me-2" aria-hidden="true"></i>
+                            <span data-i18n="renewable_title">Renewable Energy Expansion</span>
+                        </h3>
+                        <p class="card-text fw-bold" data-i18n="renewable_summary">Large-scale renewable energy adoption.</p>
+                        <button type="button" class="btn btn-intel mt-auto learn-more"
+                                data-bs-toggle="modal" data-bs-target="#detailModal" data-milestone="renewable"
+                                data-i18n="learnMore">Learn More</button>
+                    </div>
+                </article>
+            </div>
 
-        <p class="summary">
-            Advanced water recycling systems.
-        </p>
+            <!-- EMISSIONS -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card milestone h-100">
+                    <img src="co2-reduction.jpg" class="card-img-top milestone-img"
+                         alt="Factory with reduced smokestack emissions" width="400" height="160">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge era-badge mb-2">2016–2020</span>
+                        <h3 class="card-title h5">
+                            <i class="bi bi-clouds-fill me-2" aria-hidden="true"></i>
+                            <span data-i18n="emissions_title">Greenhouse Gas Reduction</span>
+                        </h3>
+                        <p class="card-text fw-bold" data-i18n="emissions_summary">Lowering manufacturing emissions.</p>
+                        <button type="button" class="btn btn-intel mt-auto learn-more"
+                                data-bs-toggle="modal" data-bs-target="#detailModal" data-milestone="emissions"
+                                data-i18n="learnMore">Learn More</button>
+                    </div>
+                </article>
+            </div>
 
-        <div class="details">
-            <p>
-                Intel invested heavily in water conservation initiatives and
-                implemented advanced reclamation technologies that reduced
-                freshwater consumption while supporting manufacturing growth.
-            </p>
+            <!-- NET POSITIVE WATER -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card milestone h-100">
+                    <img src="net-positive-water.jpg" class="card-img-top milestone-img"
+                         alt="Restored river watershed with healthy vegetation" width="400" height="160">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge era-badge mb-2">2021–2030</span>
+                        <h3 class="card-title h5">
+                            <i class="bi bi-water me-2" aria-hidden="true"></i>
+                            <span data-i18n="netwater_title">Net Positive Water</span>
+                        </h3>
+                        <p class="card-text fw-bold" data-i18n="netwater_summary">Restoring more water than consumed.</p>
+                        <button type="button" class="btn btn-intel mt-auto learn-more"
+                                data-bs-toggle="modal" data-bs-target="#detailModal" data-milestone="netwater"
+                                data-i18n="learnMore">Learn More</button>
+                    </div>
+                </article>
+            </div>
+
+            <!-- NET ZERO -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card milestone h-100">
+                    <img src="net-zero.jpg" class="card-img-top milestone-img"
+                         alt="Green globe representing net-zero carbon emissions" width="400" height="160">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge era-badge mb-2">2040</span>
+                        <h3 class="card-title h5">
+                            <i class="bi bi-globe2 me-2" aria-hidden="true"></i>
+                            <span data-i18n="netzero_title">Net-Zero Emissions</span>
+                        </h3>
+                        <p class="card-text fw-bold" data-i18n="netzero_summary">Achieving carbon neutrality.</p>
+                        <button type="button" class="btn btn-intel mt-auto learn-more"
+                                data-bs-toggle="modal" data-bs-target="#detailModal" data-milestone="netzero"
+                                data-i18n="learnMore">Learn More</button>
+                    </div>
+                </article>
+            </div>
+
         </div>
-    </article>
 
-    <article class="milestone">
-        <h2>2008-2015</h2>
+        <!-- SUBSCRIPTION FORM -->
+        <section class="subscribe-section mt-5 p-4 rounded" aria-labelledby="subHeading">
+            <h2 id="subHeading" class="h4" data-i18n="newsletterHeading">Stay Updated</h2>
+            <p data-i18n="newsletterSub">Subscribe to our sustainability newsletter.</p>
 
-        <img src="renewable-energy.jpg" alt="Renewable Energy">
+            <form id="subscribeForm" class="row g-2 align-items-start needs-validation" novalidate>
+                <div class="col-12 col-sm-8">
+                    <label for="emailInput" class="form-label" data-i18n="emailLabel">Email address</label>
+                    <input type="email" class="form-control" id="emailInput"
+                           aria-describedby="emailHelp" autocomplete="email" required>
+                    <div id="emailHelp" class="form-text" data-i18n="emailHelp">We'll never share your email.</div>
+                    <div class="invalid-feedback" data-i18n="emailError">Please enter a valid email address.</div>
+                </div>
+                <div class="col-12 col-sm-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-intel w-100" data-i18n="subscribe">Subscribe</button>
+                </div>
+                <div id="formMessage" class="alert alert-success d-none mt-2 mb-0" role="status"></div>
+            </form>
+        </section>
+    </main>
 
-        <h3>Renewable Energy Expansion</h3>
-
-        <p class="summary">
-            Large-scale renewable energy adoption.
-        </p>
-
-        <div class="details">
-            <p>
-                Intel expanded renewable energy purchases and invested in
-                cleaner electricity sources including wind and solar projects.
-            </p>
+    <!-- FOOTER -->
+    <footer class="site-footer text-center py-3">
+        <p class="mb-1" data-i18n="footerText">© 2025 Intel Sustainability Timeline. Educational project.</p>
+        <div class="footer-links">
+            <a href="#main" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+            <a href="#main" aria-label="Twitter"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+            <a href="#main" aria-label="YouTube"><i class="bi bi-youtube" aria-hidden="true"></i></a>
         </div>
-    </article>
+    </footer>
 
-    <article class="milestone">
-        <h2>2016-2020</h2>
-
-        <img src="co2-reduction.jpg" alt="Carbon Reduction">
-
-        <h3>Greenhouse Gas Reduction</h3>
-
-        <p class="summary">
-            Lowering manufacturing emissions.
-        </p>
-
-        <div class="details">
-            <p>
-                New technologies and efficiency upgrades helped reduce
-                emissions while improving operational performance.
-            </p>
+    <!-- BOOTSTRAP COMPONENT: reusable modal (filled by script.js) -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="detailModalLabel">Details</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            data-i18n-aria="closeLabel" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="detailModalBody"></div>
+            </div>
         </div>
-    </article>
+    </div>
 
-    <article class="milestone">
-        <h2>2021-2030</h2>
-
-        <img src="net-positive-water.jpg" alt="Net Positive Water">
-
-        <h3>Net Positive Water</h3>
-
-        <p class="summary">
-            Restoring more water than consumed.
-        </p>
-
-        <div class="details">
-            <p>
-                Intel works with environmental organizations and communities
-                to restore watersheds and improve water availability.
-            </p>
-        </div>
-    </article>
-
-    <article class="milestone">
-        <h2>2040</h2>
-
-        <img src="net-zero.jpg" alt="Net Zero">
-
-        <h3>Net-Zero Emissions</h3>
-
-        <p class="summary">
-            Achieving carbon neutrality.
-        </p>
-
-        <div class="details">
-            <p>
-                Intel's long-term goal is net-zero greenhouse gas emissions
-                through innovation, renewable energy, and supply-chain
-                collaboration.
-            </p>
-        </div>
-    </article>
-
-</main>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
